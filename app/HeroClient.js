@@ -1,6 +1,123 @@
 'use client'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+
+const COMMANDS = {
+  help: {
+    output: () => [
+      { text: 'Available commands:', color: 'text-retro-yellow' },
+      { text: '  skills   — view my tech stack', color: 'text-retro-cream' },
+      { text: '  projects — browse my work', color: 'text-retro-cream' },
+      { text: '  about    — learn about me', color: 'text-retro-cream' },
+      { text: '  contact  — get in touch', color: 'text-retro-cream' },
+    ],
+  },
+  skills: {
+    navigate: '/skills',
+    output: () => [
+      { text: 'Loading skills...', color: 'text-green-400' },
+      { text: 'Redirecting to /skills ↗', color: 'text-retro-amber' },
+    ],
+  },
+  projects: {
+    navigate: '/projects',
+    output: () => [
+      { text: 'Loading projects...', color: 'text-green-400' },
+      { text: 'Redirecting to /projects ↗', color: 'text-retro-amber' },
+    ],
+  },
+  about: {
+    navigate: '/about',
+    output: () => [
+      { text: 'Loading about page...', color: 'text-green-400' },
+      { text: 'Redirecting to /about ↗', color: 'text-retro-amber' },
+    ],
+  },
+  contact: {
+    navigate: '/contact',
+    output: () => [
+      { text: 'Loading contact page...', color: 'text-green-400' },
+      { text: 'Redirecting to /contact ↗', color: 'text-retro-amber' },
+    ],
+  },
+}
+
+function InteractiveTerminal() {
+  const [input, setInput] = useState('')
+  const [history, setHistory] = useState([
+    { type: 'output', lines: [
+      { text: 'Welcome! Type help for available commands.', color: 'text-retro-amber' },
+    ]},
+  ])
+  const containerRef = useRef(null)
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight
+    }
+  }, [history])
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const cmd = input.trim().toLowerCase()
+    if (!cmd) return
+
+    const entry = [{ type: 'command', text: cmd }]
+    const def = COMMANDS[cmd]
+
+    if (def) {
+      entry.push({ type: 'output', lines: def.output() })
+      setHistory(h => [...h, ...entry])
+      if (def.navigate) {
+        setTimeout(() => { window.location.href = def.navigate }, 800)
+      }
+    } else {
+      entry.push({ type: 'output', lines: [
+        { text: `Command not found: "${cmd}"`, color: 'text-red-400' },
+        { text: 'Type help to see available commands.', color: 'text-retro-cream' },
+      ]})
+      setHistory(h => [...h, ...entry])
+    }
+
+    setInput('')
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="bg-retro-dark p-6 font-mono-r text-sm leading-loose h-72 overflow-y-auto cursor-text"
+      onClick={() => inputRef.current?.focus()}
+    >
+      {history.map((item, i) =>
+        item.type === 'command' ? (
+          <p key={i}>
+            <span className="text-green-400">~/portfolio</span>{' '}
+            <span className="text-retro-yellow">$</span>{' '}
+            <span className="text-retro-cream">{item.text}</span>
+          </p>
+        ) : (
+          item.lines.map((line, j) => (
+            <p key={`${i}-${j}`} className={`ml-4 ${line.color}`}>{line.text}</p>
+          ))
+        )
+      )}
+      <form onSubmit={handleSubmit} className="flex items-center gap-1 mt-1">
+        <span className="text-green-400 shrink-0">~/portfolio</span>
+        <span className="text-retro-yellow shrink-0">$</span>
+        <input
+          ref={inputRef}
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          className="bg-transparent outline-none text-retro-cream caret-retro-yellow flex-1 min-w-0"
+          spellCheck={false}
+          autoComplete="off"
+          aria-label="terminal input"
+        />
+      </form>
+    </div>
+  )
+}
 
 const TYPED_TEXTS = ['FULL-STACK DEVELOPER','UI/UX ENTHUSIAST','PIXEL CRAFTSMAN','OPEN SOURCE LOVER']
 
@@ -69,17 +186,7 @@ export default function HeroClient() {
                 <span>terminal — portfolio.sh</span>
                 <div><span className="retro-window-dot" /><span className="retro-window-dot" /><span className="retro-window-dot" /></div>
               </div>
-              <div className="bg-retro-dark p-6 font-mono-r text-sm leading-loose">
-                <p><span className="text-green-400">~/portfolio</span> <span className="text-retro-yellow">$</span> whoami</p>
-                <p className="text-retro-cream ml-4">alex_pixel — Full Stack Developer</p>
-                <p className="mt-2"><span className="text-green-400">~/portfolio</span> <span className="text-retro-yellow">$</span> cat skills.txt</p>
-                <p className="text-retro-amber ml-4">React, Next.js, Node.js, Python</p>
-                <p className="text-retro-amber ml-4">PostgreSQL, MongoDB, Redis</p>
-                <p className="text-retro-amber ml-4">Docker, AWS, CI/CD</p>
-                <p className="mt-2"><span className="text-green-400">~/portfolio</span> <span className="text-retro-yellow">$</span> echo $STATUS</p>
-                <p className="text-green-400 ml-4">OPEN TO WORK ✓</p>
-                <p className="mt-2"><span className="text-green-400">~/portfolio</span> <span className="text-retro-yellow">$</span> <span className="animate-blink">█</span></p>
-              </div>
+              <InteractiveTerminal />
             </div>
           </div>
         </div>
