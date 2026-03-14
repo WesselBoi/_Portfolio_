@@ -119,7 +119,7 @@ function InteractiveTerminal() {
   )
 }
 
-const TYPED_TEXTS = ['FULL-STACK DEVELOPER','UI/UX ENTHUSIAST','PIXEL CRAFTSMAN','OPEN SOURCE LOVER']
+const TYPED_TEXTS = ['FULL-STACK DEVELOPER','UI/UX ENTHUSIAST','AI/ML EXPLORER']
 
 function TypedText() {
   const [textIdx, setTextIdx] = useState(0)
@@ -166,13 +166,13 @@ export default function HeroClient() {
                 <span className="font-mono-r text-green-400 text-xs">SYSTEM ONLINE // AVAILABLE FOR HIRE</span>
               </div>
               <h1 className="font-pixel text-retro-yellow text-2xl md:text-4xl leading-relaxed mb-4 glitch" data-text="ALEX PIXEL">
-                ALEX PIXEL
+                SAKSHAM MATHUR
               </h1>
               <div className="mb-8 h-8 flex items-center"><TypedText /></div>
               <p className="font-mono-r text-retro-amber text-base leading-relaxed mb-10 max-w-lg">
-                &gt; Crafting digital experiences with retro soul and modern tech.<br />
-                &gt; 5+ years building web apps that users actually love.<br />
-                &gt; Based in San Francisco, CA.
+                &gt; CS undergrad turning caffeine into code.<br />
+                &gt; Passionate about full-stack dev and AI/ML.<br />
+                &gt; Based in India, open to remote opportunities.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/projects" className="retro-btn">VIEW PROJECTS</Link>

@@ -15,8 +15,8 @@ export default function Home() {
 
       {/* Stats bar */}
       <div className="bg-retro-yellow border-y-4 border-retro-dark py-4 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[['5+','YRS EXP'],['40+','PROJECTS'],['12K+','COMMITS'],['99%','UPTIME']].map(([n,l]) => (
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
+          {[['3rd','YEAR CS'],['15+','PROJECTS'],['9.7','GPA']].map(([n,l]) => (
             <div key={l} className="text-center">
               <div className="font-pixel text-retro-dark text-2xl md:text-3xl">{n}</div>
               <div className="font-mono-r text-retro-brown text-xs mt-1">{l}</div>
