@@ -2,9 +2,7 @@ import Link from 'next/link'
 
 const TIMELINE = [
   { year:'2024', title:'Senior Dev @ PixelCorp',    desc:'Led team of 8 engineers building SaaS platform with 100k+ users.', icon:'★' },
-  { year:'2022', title:'Full Stack @ RetroSoft',     desc:'Built real-time collaboration tools for Fortune 500 clients.', icon:'◆' },
-  { year:'2020', title:'Junior Dev @ StartupXYZ',    desc:'First professional role; shipped 15+ features in the first quarter.', icon:'▲' },
-  { year:'2019', title:'CS Degree — State University', desc:'Graduated with honors. Specialised in software engineering.', icon:'●' },
+  { year:'2022', title:'Full Stack @ RetroSoft',     desc:'Built real-time collaboration tools for Fortune 500 clients.', icon:'◆' }
 ]
 
 export const metadata = { title: 'About — PIXEL.DEV' }
@@ -51,21 +49,9 @@ export default function About() {
             <div>
               <h2 className="font-pixel text-retro-dark text-base mb-6 retro-heading">{'// WHO AM I'}</h2>
               <div className="font-mono-r text-retro-brown text-base leading-relaxed space-y-4">
-                <p>&gt; Hey! I&apos;m Alex — a full-stack developer with a passion for building web applications that are both functional and delightful. Writing code professionally since 2017.</p>
-                <p>&gt; My stack: React/Next.js frontend, Node.js or Python backend. Equally comfortable designing databases, building APIs, or obsessing over CSS.</p>
-                <p>&gt; Off the clock: vintage game cartridges, mechanical keyboards, open source contributions.</p>
-              </div>
-            </div>
-
-            <div className="retro-window">
-              <div className="retro-window-bar"><span>fun_facts.exe</span></div>
-              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[['🎮','Owns 200+ retro games'],['⌨️','15 mechanical keyboards'],['☕','Drinks 4 coffees/day'],['🌙','Night owl developer'],['📚','Reads 30+ books/year'],['🏃','Morning run evangelist']].map(([icon,text]) => (
-                  <div key={text} className="flex items-center gap-3 font-mono-r text-sm text-retro-brown">
-                    <span className="text-xl">{icon}</span>
-                    <span>&gt; {text}</span>
-                  </div>
-                ))}
+                <p>&gt; Yo, I&apos;m Saksham Mathur, By day, I’m a full‑stack developer who enjoys wiring up pixel‑perfect interfaces to reliable backends. By night, I experiment with machine learning models, turning data into little decision‑making power‑ups.</p>
+                <p>&gt; I study at university, where I balance algorithms, math, and software engineering projects with building side quests like this portfolio.</p>
+                <p>&gt; I like working across the stack: from designing clean, responsive UIs to building APIs that don’t fall over when people start actually using them. Separately, I build ML‑focused projects—small models for recommendation, prediction, or classification—that live in their own worlds and let me explore the “smart” side of software.</p>
               </div>
             </div>
 

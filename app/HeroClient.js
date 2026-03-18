@@ -161,10 +161,6 @@ export default function HeroClient() {
         <div className="max-w-6xl mx-auto relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 border border-green-500 px-3 py-1 mb-6">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="font-mono-r text-green-400 text-xs">SYSTEM ONLINE // AVAILABLE FOR HIRE</span>
-              </div>
               <h1 className="font-pixel text-retro-yellow text-2xl md:text-4xl leading-relaxed mb-4" data-text="ALEX PIXEL">
                 SAKSHAM MATHUR
               </h1>
@@ -174,8 +170,13 @@ export default function HeroClient() {
                 &gt; Passionate about full-stack dev and AI/ML.<br />
                 &gt; Based in India, open to remote opportunities.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/projects" className="retro-btn">VIEW PROJECTS</Link>
+              <div className='flex'>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/projects" className="retro-btn">VIEW PROJECTS</Link>
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/skills" className="retro-btn">&nbsp;VIEW Skills&nbsp;</Link>
+                </div>
               </div>
             </div>
 

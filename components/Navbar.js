@@ -16,14 +16,6 @@ export default function Navbar() {
   const [time, setTime] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
 
-  useEffect(() => {
-    const update = () =>
-      setTime(new Date().toLocaleTimeString('en-US', { hour12: false }))
-    update()
-    const id = setInterval(update, 1000)
-    return () => clearInterval(id)
-  }, [])
-
   return (
     <nav className="sticky top-0 z-50 bg-retro-dark border-b-4 border-retro-yellow">
       {/* Marquee */}
@@ -39,7 +31,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="font-pixel text-retro-yellow text-sm hover:text-retro-amber transition-colors glitch" data-text="PX.DEV">
-            PX.DEV
+          Portfolio
           </Link>
 
           {/* Desktop links */}
@@ -59,9 +51,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Clock */}
           <div className="hidden md:block font-mono-r text-retro-yellow text-sm border border-retro-yellow px-3 py-1">
-            <span className="text-retro-amber">SYS:</span> {time}
+            <span className="text-retro-amber">Resume</span>
           </div>
 
           {/* Mobile menu toggle */}

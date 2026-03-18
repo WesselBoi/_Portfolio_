@@ -62,14 +62,9 @@ export default function Home() {
 
       {/* CTA */}
       <section className="py-16 px-4 bg-retro-dark relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage:'radial-gradient(#F5C518 1px,transparent 1px)', backgroundSize:'20px 20px' }} />
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage:'radial-gradient(#F5C518 1px,transparent 1px)', backgroundSize:'10px 10px' }} />
         <div className="max-w-3xl mx-auto text-center relative">
-          <h2 className="font-pixel text-retro-yellow text-xl md:text-2xl mb-6 leading-relaxed">LET&apos;S BUILD<br />SOMETHING GREAT</h2>
-          <p className="font-mono-r text-retro-amber text-base mb-10">
-            &gt; Got a project in mind? I&apos;m always excited<br />
-            &gt; to collaborate on interesting challenges.
-          </p>
-          <Link href="/contact" className="retro-btn">START A PROJECT</Link>
+          <Link href="/contact" className="retro-btn">Download Resume</Link>
         </div>
       </section>
     </>

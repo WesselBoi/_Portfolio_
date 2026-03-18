@@ -55,12 +55,16 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
+    :root {
+      --pointy-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24' viewBox='0 0 16 24'%3E%3Cpolygon points='2,2 2,20 6,15 9,22 11,20 8,12 14,12' fill='%23FFAB55'/%3E%3C/svg%3E") 2 2;
+    }
+
     body,
     a,
     button,
     select,
     [role='button'] {
-      cursor: none;
+      cursor: var(--pointy-cursor), auto;
     }
 
     input,
@@ -130,7 +134,7 @@
     font-family: var(--font-pixel);
     font-size: 10px;
     padding: 12px 20px;
-    cursor: pointer;
+    cursor: var(--pointy-cursor), auto;
     transition: all 0.1s;
     color: var(--color-retro-dark);
     text-transform: uppercase;

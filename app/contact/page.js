@@ -55,7 +55,7 @@ export default function Contact() {
                 <span>compose_message.exe</span>
                 <div><span className="retro-window-dot" /><span className="retro-window-dot" /><span className="retro-window-dot" /></div>
               </div>
-              <div className="p-8 bg-retro-cream">
+              <div className="p-8 bg-retro-cream native-cursor-zone" data-native-cursor>
                 {sent ? (
                   <div className="text-center py-12">
                     <div className="font-pixel text-4xl text-retro-yellow mb-4">✓</div>
