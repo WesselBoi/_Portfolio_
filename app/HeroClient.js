@@ -165,7 +165,7 @@ export default function HeroClient() {
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span className="font-mono-r text-green-400 text-xs">SYSTEM ONLINE // AVAILABLE FOR HIRE</span>
               </div>
-              <h1 className="font-pixel text-retro-yellow text-2xl md:text-4xl leading-relaxed mb-4 glitch" data-text="ALEX PIXEL">
+              <h1 className="font-pixel text-retro-yellow text-2xl md:text-4xl leading-relaxed mb-4" data-text="ALEX PIXEL">
                 SAKSHAM MATHUR
               </h1>
               <div className="mb-8 h-8 flex items-center"><TypedText /></div>
@@ -176,12 +176,11 @@ export default function HeroClient() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/projects" className="retro-btn">VIEW PROJECTS</Link>
-                <Link href="/contact" className="retro-btn retro-btn-dark">HIRE ME</Link>
               </div>
             </div>
 
             {/* Terminal */}
-            <div className="retro-window hidden lg:block">
+            <div className="retro-window hidden lg:block native-cursor-zone" data-native-cursor>
               <div className="retro-window-bar">
                 <span>terminal — portfolio.sh</span>
                 <div><span className="retro-window-dot" /><span className="retro-window-dot" /><span className="retro-window-dot" /></div>

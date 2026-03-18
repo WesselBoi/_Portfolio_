@@ -1,6 +1,7 @@
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import TrailingCursor from '@/components/cursor'
 
 export const metadata = {
   title: 'PIXEL.DEV — Portfolio',
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-screen flex flex-col bg-retro-cream">
+        <TrailingCursor particles={18} rate={0.35} />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

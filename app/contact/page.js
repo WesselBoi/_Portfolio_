@@ -38,7 +38,7 @@ export default function Contact() {
               </div>
             </div>
             <div className="retro-card">
-              <h3 className="font-pixel text-retro-dark text-xs mb-4">// FIND ME ON</h3>
+              <h3 className="font-pixel text-retro-dark text-xs mb-4">{'// FIND ME ON'}</h3>
               {[{name:'GITHUB',handle:'@alexpixel'},{name:'TWITTER',handle:'@alexpixeldev'},{name:'LINKEDIN',handle:'in/alexpixel'},{name:'DEV.TO',handle:'@alexpixel'}].map(({name,handle}) => (
                 <a key={name} href="#" className="flex justify-between items-center p-3 border-2 border-retro-dark hover:bg-retro-yellow transition-colors group mb-2">
                   <span className="font-pixel text-xs text-retro-dark">{name}</span>
