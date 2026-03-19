@@ -4,8 +4,8 @@ import Footer from '@/components/Footer'
 import TrailingCursor from '@/components/cursor'
 
 export const metadata = {
-  title: 'PIXEL.DEV — Portfolio',
-  description: 'Retro-themed developer portfolio',
+  title: 'Portfolio',
+  description: 'Retro-themed portfolio',
 }
 
 export default function RootLayout({ children }) {
