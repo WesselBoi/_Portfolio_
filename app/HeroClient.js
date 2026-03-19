@@ -2,52 +2,92 @@
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 
-const COMMANDS = {
-  help: {
-    output: () => [
-      { text: 'Available commands:', color: 'text-retro-yellow' },
-      { text: '  skills   — view my tech stack', color: 'text-retro-cream' },
-      { text: '  projects — browse my work', color: 'text-retro-cream' },
-      { text: '  about    — learn about me', color: 'text-retro-cream' },
-      { text: '  contact  — get in touch', color: 'text-retro-cream' },
+const FILE_TREE = {
+  about: ['bio.txt', 'experience.txt', 'education.txt'],
+  skills: ['frontend.txt', 'backend.txt', 'tools.txt'],
+  projects: ['featured.txt', 'web-apps.txt', 'experiments.txt'],
+  contact: ['email.txt', 'socials.txt', 'availability.txt'],
+}
+
+const FILE_CONTENTS = {
+  about: {
+    'bio.txt': [
+      'Saksham Mathur - Full-stack developer and CS undergrad.',
+      'Interested in building reliable products with thoughtful UX.',
+    ],
+    'experience.txt': [
+      '- Built multiple end-to-end web projects using Next.js and Node.js.',
+      '- Worked on APIs, authentication, and data-driven interfaces.',
+      '- Exploring applied AI/ML through practical side projects.',
+    ],
+    'education.txt': [
+      'Computer Science Undergraduate',
+      'Focus: software engineering, full-stack systems, and AI fundamentals.',
     ],
   },
   skills: {
-    navigate: '/skills',
-    output: () => [
-      { text: 'Loading skills...', color: 'text-green-400' },
-      { text: 'Redirecting to /skills ↗', color: 'text-retro-amber' },
+    'frontend.txt': [
+      'React, Next.js, Tailwind CSS, JavaScript, TypeScript',
+      'Focus on responsive UI and clean component architecture.',
+    ],
+    'backend.txt': [
+      'Node.js, Express, Python, FastAPI, REST API design',
+      'Comfortable with authentication, validation, and database integration.',
+    ],
+    'tools.txt': [
+      'Git, Docker, Postman, VS Code, Vercel',
+      'Workflow focused on iteration, versioning, and reliable deployments.',
     ],
   },
   projects: {
-    navigate: '/projects',
-    output: () => [
-      { text: 'Loading projects...', color: 'text-green-400' },
-      { text: 'Redirecting to /projects ↗', color: 'text-retro-amber' },
+    'featured.txt': [
+      'Retro OS - Browser OS simulation with terminal-like interactions.',
+      'Pixel Shop - Full-stack commerce workflow project.',
+      'Chiptune API - Backend-focused service experimentation.',
     ],
-  },
-  about: {
-    navigate: '/about',
-    output: () => [
-      { text: 'Loading about page...', color: 'text-green-400' },
-      { text: 'Redirecting to /about ↗', color: 'text-retro-amber' },
+    'web-apps.txt': [
+      '- UI-heavy full-stack projects with reusable component systems.',
+      '- Strong emphasis on readability and performance.',
+    ],
+    'experiments.txt': [
+      '- AI/ML mini projects for recommendations and predictions.',
+      '- Creative coding and retro interaction prototypes.',
     ],
   },
   contact: {
-    navigate: '/contact',
-    output: () => [
-      { text: 'Loading contact page...', color: 'text-green-400' },
-      { text: 'Redirecting to /contact ↗', color: 'text-retro-amber' },
+    'email.txt': [
+      'hello@saksham.dev',
+      'Expected response time: under 24 hours.',
+    ],
+    'socials.txt': [
+      'GitHub: github.com/wesselboi',
+      'LinkedIn: linkedin.com/in/saksham',
+    ],
+    'availability.txt': [
+      'Open to internships and entry-level full-stack roles.',
+      'Remote-friendly and available for collaborative projects.',
     ],
   },
 }
 
+const ROOT_FOLDERS = Object.keys(FILE_TREE)
+
+function formatPath(parts) {
+  if (parts.length === 0) return '~/portfolio'
+  return `~/portfolio/${parts.join('/')}`
+}
+
 function InteractiveTerminal() {
   const [input, setInput] = useState('')
+  const [cwd, setCwd] = useState([])
   const [history, setHistory] = useState([
-    { type: 'output', lines: [
-      { text: 'Welcome! Type help for available commands.', color: 'text-retro-amber' },
-    ]},
+    {
+      type: 'output',
+      lines: [
+        { text: 'Type help to see available commands.', color: 'text-retro-cream' },
+        { text: 'Type ls to see available directories.', color: 'text-retro-cream' },
+      ],
+    },
   ])
   const containerRef = useRef(null)
   const inputRef = useRef(null)
@@ -60,25 +100,82 @@ function InteractiveTerminal() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const cmd = input.trim().toLowerCase()
-    if (!cmd) return
+    const raw = input.trim()
+    if (!raw) return
 
-    const entry = [{ type: 'command', text: cmd }]
-    const def = COMMANDS[cmd]
+    const tokens = raw.split(/\s+/)
+    const command = tokens[0].toLowerCase()
+    const args = tokens.slice(1)
+    const output = []
 
-    if (def) {
-      entry.push({ type: 'output', lines: def.output() })
-      setHistory(h => [...h, ...entry])
-      if (def.navigate) {
-        setTimeout(() => { window.location.href = def.navigate }, 800)
+    if (command === 'help') {
+      output.push({ text: 'Available commands:', color: 'text-retro-yellow' })
+      output.push({ text: '  ls         --   list files/folders in current directory', color: 'text-retro-cream' })
+      output.push({ text: '  cd <dir>   --   enter a category (about, skills, projects, contact)', color: 'text-retro-cream' })
+      output.push({ text: '  cat <file> --   print file content in current directory', color: 'text-retro-cream' })
+      output.push({ text: '  pwd        --   print current path', color: 'text-retro-cream' })
+      output.push({ text: '  clear      --   clear terminal output', color: 'text-retro-cream' })
+    } else if (command === 'ls') {
+      if (cwd.length === 0) {
+        ROOT_FOLDERS.forEach((folder) => {
+          output.push({ text: `${folder}/`, color: 'text-green-400' })
+        })
+      } else {
+        const folder = cwd[0]
+        FILE_TREE[folder].forEach((file) => {
+          output.push({ text: file, color: 'text-retro-cream' })
+        })
       }
+    } else if (command === 'cd') {
+      const target = args[0]
+
+      if (!target) {
+        output.push({ text: 'Usage: cd <directory>', color: 'text-red-400' })
+      } else if (target === '/' || target === '~') {
+        setCwd([])
+      } else if (target === '..') {
+        setCwd((prev) => prev.slice(0, -1))
+      } else if (ROOT_FOLDERS.includes(target)) {
+        setCwd([target])
+      } else {
+        output.push({ text: `cd: no such directory: ${target}`, color: 'text-red-400' })
+      }
+    } else if (command === 'cat') {
+      const file = args[0]
+
+      if (!file) {
+        output.push({ text: 'Usage: cat <file>', color: 'text-red-400' })
+      } else if (cwd.length === 0) {
+        output.push({ text: 'cat: open a category first using cd <directory>', color: 'text-red-400' })
+      } else {
+        const folder = cwd[0]
+        const files = FILE_TREE[folder]
+
+        if (!files.includes(file)) {
+          output.push({ text: `cat: ${file}: No such file`, color: 'text-red-400' })
+        } else {
+          const lines = FILE_CONTENTS[folder][file] || ['(empty file)']
+          lines.forEach((line) => {
+            output.push({ text: line, color: 'text-retro-cream' })
+          })
+        }
+      }
+    } else if (command === 'pwd') {
+      output.push({ text: formatPath(cwd), color: 'text-retro-amber' })
+    } else if (command === 'clear') {
+      setHistory([])
+      setInput('')
+      return
     } else {
-      entry.push({ type: 'output', lines: [
-        { text: `Command not found: "${cmd}"`, color: 'text-red-400' },
-        { text: 'Type help to see available commands.', color: 'text-retro-cream' },
-      ]})
-      setHistory(h => [...h, ...entry])
+      output.push({ text: `Command not found: "${command}"`, color: 'text-red-400' })
+      output.push({ text: 'Type help to see available commands.', color: 'text-retro-cream' })
     }
+
+    const entry = [{ type: 'command', text: raw, path: formatPath(cwd) }]
+    if (output.length > 0) {
+      entry.push({ type: 'output', lines: output })
+    }
+    setHistory((h) => [...h, ...entry])
 
     setInput('')
   }
@@ -92,7 +189,7 @@ function InteractiveTerminal() {
       {history.map((item, i) =>
         item.type === 'command' ? (
           <p key={i}>
-            <span className="text-green-400">~/portfolio</span>{' '}
+            <span className="text-green-400">{item.path}</span>{' '}
             <span className="text-retro-yellow">$</span>{' '}
             <span className="text-retro-cream">{item.text}</span>
           </p>
@@ -103,7 +200,7 @@ function InteractiveTerminal() {
         )
       )}
       <form onSubmit={handleSubmit} className="flex items-center gap-1 mt-1">
-        <span className="text-green-400 shrink-0">~/portfolio</span>
+        <span className="text-green-400 shrink-0">{formatPath(cwd)}</span>
         <span className="text-retro-yellow shrink-0">$</span>
         <input
           ref={inputRef}
@@ -167,7 +264,7 @@ export default function HeroClient() {
               <div className="mb-8 h-8 flex items-center"><TypedText /></div>
               <p className="font-mono-r text-retro-amber text-base leading-relaxed mb-10 max-w-lg">
                 &gt; CS undergrad turning caffeine into code.<br />
-                &gt; Passionate about full-stack dev and AI/ML.<br />
+                &gt; Full-stack dev and AI/ML.<br />
                 &gt; Based in India, open to remote opportunities.
               </p>
               <div className='flex'>
