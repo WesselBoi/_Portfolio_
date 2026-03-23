@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 const TIMELINE = [
-  { year:'2024', title:'Senior Dev @ PixelCorp',    desc:'Led team of 8 engineers building SaaS platform with 100k+ users.', icon:'★' },
-  { year:'2022', title:'Full Stack @ RetroSoft',     desc:'Built real-time collaboration tools for Fortune 500 clients.', icon:'◆' }
+  { year:'2025', title:'Full Stack Internship @ Codec Technologies',     desc:'Built and deployed two full-stack web apps: a social media platform using Next.js and Express, and an e-commerce site using MERN and Redux Toolkit. Integrated secure auth with JWT and optimized backend APIs for performance.', icon:'◆' },
+  { year:'2024', title:'CS and Math Tutor @ TESS Academy',    desc:"Tutored 10+ students in Python, emphasizing OOP concepts like inheritance and polymorphism, SQL, and programming fundamentals. Created tailored lesson plans, improving students’ project scores by 25% through interactive coding sessions and effective debugging techniques.", icon:'★' },
 ]
 
 export const metadata = { title: 'About — PIXEL.DEV' }
@@ -27,15 +27,14 @@ export default function About() {
               </div>
               <div className="bg-retro-cream p-6 flex justify-center">
                 <div className="relative w-32 h-32 border-4 border-retro-dark bg-retro-yellow flex flex-col items-center justify-center">
-                  <span className="font-pixel text-retro-dark text-4xl">:)</span>
-                  <span className="font-pixel text-retro-brown text-xs mt-1">ALEX.PX</span>
+                  <img src='squirtle.png'></img>
                   <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 border-2 border-retro-dark" />
                 </div>
               </div>
             </div>
             <div className="retro-card">
               <h3 className="font-pixel text-retro-dark text-xs mb-4">{'// PROFILE'}</h3>
-              {[['NAME','Alex Pixel'],['ROLE','Full Stack Dev'],['LOCATION','San Francisco'],['COFFEE','Black, always'],['EDITOR','Neovim (btw)'],['OS','Arch Linux']].map(([k,v]) => (
+              {[['NAME','Saksham Mathur'],['LOCATION','Greater Noida'],['COFFEE','YES'],['EDITOR','VSCode'],['OS','Macintosh']].map(([k,v]) => (
                 <div key={k} className="flex gap-2 mb-3 font-mono-r text-sm">
                   <span className="text-retro-orange w-24 shrink-0">{k}:</span>
                   <span className="text-retro-brown">{v}</span>

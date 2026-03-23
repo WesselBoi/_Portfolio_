@@ -3,9 +3,9 @@ import Link from 'next/link'
 import HeroClient from './HeroClient'   // ← client island
 
 const FEATURED = [
-  { id: 1, title: 'RETRO OS',     badge: 'FEATURED', desc: 'Browser-based OS sim with file manager, terminal & retro games.', tech: ['React','Canvas','Node.js'], year: '2024' },
-  { id: 2, title: 'PIXEL SHOP',   badge: 'LIVE',     desc: 'E-commerce with real-time inventory & Stripe payments.',           tech: ['Next.js','Stripe','MongoDB'], year: '2024' },
-  { id: 3, title: 'CHIPTUNE API', badge: 'API',      desc: 'REST API generating 8-bit music from MIDI. 10k+ req/mo.',         tech: ['Python','FastAPI','Docker'], year: '2023' },
+  { id: 1, title: 'AI Image Generator', badge: 'AI',      desc: 'Text-to-image generation platform with community sharing and smooth API-driven UX.',               tech: ['MERN Stack', 'Stable Diffusion API', 'React'], year: '2025' },
+  { id: 2, title: 'ShopEase',           badge: 'PRODUCT', desc: 'MERN commerce app with secure authentication, cart and checkout, plus REST APIs.',                  tech: ['MERN', 'Redux Toolkit', 'JWT'],                year: '2025' },
+  { id: 3, title: 'Self-Harm Content Detection', badge: 'ML', desc: 'NLP pipeline for self-harm detection using baseline ML models and fine-tuned BERT.',         tech: ['Python', 'Scikit-learn', 'Transformers'],      year: '2025' },
 ]
 
 export default function Home() {

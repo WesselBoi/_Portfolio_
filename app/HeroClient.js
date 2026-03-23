@@ -12,60 +12,50 @@ const FILE_TREE = {
 const FILE_CONTENTS = {
   about: {
     'bio.txt': [
-      'Saksham Mathur - Full-stack developer and CS undergrad.',
-      'Interested in building reliable products with thoughtful UX.',
+      'Saksham Mathur - CS undergrad and full-stack developer.',
     ],
     'experience.txt': [
-      '- Built multiple end-to-end web projects using Next.js and Node.js.',
-      '- Worked on APIs, authentication, and data-driven interfaces.',
-      '- Exploring applied AI/ML through practical side projects.',
+      '- Built full-stack apps with Next.js and Node.js.',
+      '- Exploring AI/ML through practical projects.',
     ],
     'education.txt': [
-      'Computer Science Undergraduate',
-      'Focus: software engineering, full-stack systems, and AI fundamentals.',
+      'Computer Science Undergraduate.',
     ],
   },
   skills: {
     'frontend.txt': [
-      'React, Next.js, Tailwind CSS, JavaScript, TypeScript',
-      'Focus on responsive UI and clean component architecture.',
+      'React, Next.js, Tailwind, JavaScript, TypeScript.',
     ],
     'backend.txt': [
-      'Node.js, Express, Python, FastAPI, REST API design',
-      'Comfortable with authentication, validation, and database integration.',
+      'Node.js, Express, Python, REST APIs.',
     ],
     'tools.txt': [
-      'Git, Docker, Postman, VS Code, Vercel',
-      'Workflow focused on iteration, versioning, and reliable deployments.',
+      'Git, Postman, VS Code, Vercel.',
     ],
   },
   projects: {
     'featured.txt': [
-      'Retro OS - Browser OS simulation with terminal-like interactions.',
-      'Pixel Shop - Full-stack commerce workflow project.',
-      'Chiptune API - Backend-focused service experimentation.',
+      'AI Image Generator',
+      'ShopEase',
+      'Self-Harm Content Detection',
     ],
     'web-apps.txt': [
-      '- UI-heavy full-stack projects with reusable component systems.',
-      '- Strong emphasis on readability and performance.',
+      '- Full-stack apps with responsive UI.',
     ],
     'experiments.txt': [
-      '- AI/ML mini projects for recommendations and predictions.',
-      '- Creative coding and retro interaction prototypes.',
+      '- AI/ML experiments and quick prototypes.',
     ],
   },
   contact: {
     'email.txt': [
-      'hello@saksham.dev',
-      'Expected response time: under 24 hours.',
+      'mathur.saksham2005@gmail.com',
     ],
     'socials.txt': [
       'GitHub: github.com/wesselboi',
-      'LinkedIn: linkedin.com/in/saksham',
+      'LinkedIn: linkedin.com/in/saksham-mathur-a416a1323',
     ],
     'availability.txt': [
-      'Open to internships and entry-level full-stack roles.',
-      'Remote-friendly and available for collaborative projects.',
+      'Open to internships and entry-level roles.',
     ],
   },
 }

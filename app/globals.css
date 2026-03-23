@@ -121,6 +121,11 @@
 
   .animate-blink   { animation: var(--animate-blink); }
   .animate-marquee { animation: var(--animate-marquee); }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
 
   /* Pixel borders & shadows */
   .pixel-border    { border: 3px solid var(--color-retro-dark); box-shadow: 4px 4px 0 var(--color-retro-dark); }
