@@ -51,9 +51,10 @@ export default function Navbar() {
           </div>
 
           <a
-            href="/resume.pdf"
-            download="Saksham_Mathur_Resume.pdf"
-            className="hidden md:block font-mono-r text-retro-yellow text-sm border border-retro-yellow px-3 py-1 hover:bg-retro-brown transition-colors"
+             href="/api/resume"
+             target="_blank"
+             rel="noopener noreferrer"
+             className="hidden md:block font-mono-r text-retro-yellow text-sm border border-retro-yellow px-3 py-1 hover:bg-retro-brown transition-colors"
           >
             <span className="text-retro-amber">Resume</span>
           </a>

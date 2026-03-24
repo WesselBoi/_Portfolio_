@@ -64,7 +64,7 @@ export default function Home() {
       <section className="py-16 px-4 bg-retro-dark relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage:'radial-gradient(#F5C518 1px,transparent 1px)', backgroundSize:'10px 10px' }} />
         <div className="max-w-3xl mx-auto text-center relative">
-          <a href="/resume.pdf" download="Saksham_Mathur_Resume.pdf" className="retro-btn">Download Resume</a>
+          <a href="/api/resume" target="_blank" rel="noopener noreferrer" className="retro-btn">Download Resume</a>
         </div>
       </section>
     </>
