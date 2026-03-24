@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const navLinks = [
   { label: '[ HOME ]',    href: '/' },
@@ -13,7 +13,6 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname()
-  const [time, setTime] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -51,9 +50,13 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:block font-mono-r text-retro-yellow text-sm border border-retro-yellow px-3 py-1">
+          <a
+            href="/resume.pdf"
+            download="Saksham_Mathur_Resume.pdf"
+            className="hidden md:block font-mono-r text-retro-yellow text-sm border border-retro-yellow px-3 py-1 hover:bg-retro-brown transition-colors"
+          >
             <span className="text-retro-amber">Resume</span>
-          </div>
+          </a>
 
           {/* Mobile menu toggle */}
           <button

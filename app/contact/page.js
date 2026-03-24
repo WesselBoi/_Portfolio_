@@ -5,6 +5,7 @@ export default function Contact() {
   const [form, setForm] = useState({ name:'', email:'', subject:'', message:'' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const socials = [
     {
       name: 'GITHUB',
@@ -18,10 +19,37 @@ export default function Contact() {
     },
   ]
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setErrorMessage('')
     setSending(true)
-    setTimeout(() => { setSending(false); setSent(true) }, 1800)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      const payload = await response.json()
+
+      if (!response.ok) {
+        if (response.status === 429 && payload?.retryAfter) {
+          const minutes = Math.ceil(Number(payload.retryAfter) / 60)
+          setErrorMessage(`Rate limit active. Try again in about ${minutes} minute(s).`)
+        } else {
+          setErrorMessage(payload?.error || 'Failed to send message. Please try again.')
+        }
+        return
+      }
+
+      setSent(true)
+      setForm({ name:'', email:'', subject:'', message:'' })
+    } catch {
+      setErrorMessage('Network error. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -79,7 +107,7 @@ export default function Contact() {
                     <div className="font-pixel text-4xl text-retro-yellow mb-4">✓</div>
                     <h3 className="font-pixel text-retro-dark text-base mb-4">MESSAGE SENT!</h3>
                     <p className="font-mono-r text-retro-brown mb-8">&gt; I&apos;ll reply within 24 hours.</p>
-                    <button onClick={() => { setSent(false); setForm({ name:'',email:'',subject:'',message:'' }) }} className="retro-btn">SEND ANOTHER</button>
+                    <button onClick={() => { setSent(false); setErrorMessage(''); setForm({ name:'',email:'',subject:'',message:'' }) }} className="retro-btn">SEND ANOTHER</button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -107,6 +135,11 @@ export default function Contact() {
                       <label className="block font-pixel text-xs text-retro-dark mb-2">MESSAGE *</label>
                       <textarea required rows={6} value={form.message} onChange={e => setForm({...form,message:e.target.value})} placeholder="Tell me about your project..." className="retro-input resize-none" />
                     </div>
+                    {errorMessage ? (
+                      <p className="font-mono-r text-sm text-red-600 border-2 border-red-600 bg-red-100 px-3 py-2">
+                        {errorMessage}
+                      </p>
+                    ) : null}
                     <button type="submit" disabled={sending} className="retro-btn w-full text-center">
                       {sending ? <span className="flex items-center justify-center gap-2"><span className="animate-blink">█</span> SENDING...</span> : 'SEND MESSAGE ↗'}
                     </button>
