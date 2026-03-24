@@ -5,6 +5,18 @@ export default function Contact() {
   const [form, setForm] = useState({ name:'', email:'', subject:'', message:'' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
+  const socials = [
+    {
+      name: 'GITHUB',
+      handle: 'github.com/wesselboi',
+      url: 'https://github.com/wesselboi',
+    },
+    {
+      name: 'LINKEDIN',
+      handle: 'linkedin.com/in/saksham-mathur-a416a1323',
+      url: 'https://www.linkedin.com/in/saksham-mathur-a416a1323',
+    },
+  ]
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -16,19 +28,19 @@ export default function Contact() {
     <>
       <div className="bg-retro-dark py-16 px-4 border-b-4 border-retro-yellow">
         <div className="max-w-6xl mx-auto">
-          <p className="font-mono-r text-retro-amber text-sm mb-2">&gt; send_message --to=alex</p>
+          <p className="font-mono-r text-retro-amber text-sm mb-2">&gt; send_message --to=saksham</p>
           <h1 className="font-pixel text-retro-yellow text-2xl md:text-3xl">CONTACT</h1>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-8xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="retro-window">
               <div className="retro-window-bar"><span>contact_info.txt</span></div>
               <div className="p-6 bg-retro-cream space-y-4">
-                {[['@ EMAIL','alex@pixel.dev'],['▲ LOCATION','San Francisco, CA'],['◷ TIMEZONE','PST (UTC-8)'],['★ AVAILABILITY','Open to work']].map(([l,v]) => (
+                {[['@ EMAIL','mathur.saksham2005@gmail.com'],['▲ LOCATION','Greater Noida, India'],['◷ TIMEZONE','IST (UTC+5:30)'],['★ AVAILABILITY','Open to work']].map(([l,v]) => (
                   <div key={l}>
                     <div className="font-pixel text-xs text-retro-orange mb-1">{l}</div>
                     <div className="font-mono-r text-retro-dark text-sm">{v}</div>
@@ -39,10 +51,16 @@ export default function Contact() {
             </div>
             <div className="retro-card">
               <h3 className="font-pixel text-retro-dark text-xs mb-4">{'// FIND ME ON'}</h3>
-              {[{name:'GITHUB',handle:'@alexpixel'},{name:'TWITTER',handle:'@alexpixeldev'},{name:'LINKEDIN',handle:'in/alexpixel'},{name:'DEV.TO',handle:'@alexpixel'}].map(({name,handle}) => (
-                <a key={name} href="#" className="flex justify-between items-center p-3 border-2 border-retro-dark hover:bg-retro-yellow transition-colors group mb-2">
+              {socials.map(({ name, handle, url }) => (
+                <a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 p-3 border-2 border-retro-dark hover:bg-retro-yellow transition-colors group mb-2"
+                >
                   <span className="font-pixel text-xs text-retro-dark">{name}</span>
-                  <span className="font-mono-r text-sm text-retro-brown group-hover:text-retro-dark">{handle}</span>
+                  <span className="font-mono-r text-xs text-retro-brown group-hover:text-retro-dark break-all md:text-right">{handle} ↗</span>
                 </a>
               ))}
             </div>
