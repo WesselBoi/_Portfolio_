@@ -16,7 +16,9 @@ export async function GET() {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Length': fileBuffer.length,
-        'Cache-Control': 'public, max-age=3600',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     })
   } catch (error) {
